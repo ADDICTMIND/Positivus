@@ -5,8 +5,7 @@
 *,
 ::before,
 ::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /**
@@ -30,8 +29,7 @@ body,
   Убираем внешние отступы вертикали нужным тегам,
   у которых есть атрибут class
  */
-:where(
-h1,
+:where(h1,
 h2,
 h3,
 h4,
@@ -40,8 +38,7 @@ h6,
 p,
 ul,
 ol,
-dl
-):where([class]) {
+dl):where([class]) {
   margin-block: 0;
 }
 
@@ -137,8 +134,6 @@ body {
   Нормализация высоты элемента ссылки при его инспектировании в DevTools
  */
 a:where([class]) {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -162,10 +157,8 @@ button {
   (за исключением тех, у которых уже указан
   атрибут fill со значением 'none' или начинается с 'url')
  */
-:where([fill]:not(
-[fill="none"],
-[fill^="url"]
-)) {
+:where([fill]:not([fill=none],
+[fill^=url])) {
   fill: currentColor;
 }
 
@@ -174,10 +167,8 @@ button {
   (за исключением тех, у которых уже указан
   атрибут stroke со значением 'none')
  */
-:where([stroke]:not(
-[stroke="none"],
-[stroke^="url"]
-)) {
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
   stroke: currentColor;
 }
 
@@ -185,7 +176,6 @@ button {
   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
  */
 svg * {
-  -webkit-transition-property: fill, stroke;
   transition-property: fill, stroke;
 }
 
@@ -205,32 +195,26 @@ svg * {
   *,
   ::before,
   ::after {
-    -webkit-animation-duration: 0.01ms !important;
-            animation-duration: 0.01ms !important;
-    -webkit-animation-iteration-count: 1 !important;
-            animation-iteration-count: 1 !important;
-    -webkit-transition-duration: 0.01ms !important;
-            transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
-
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   src: url(../fonts/SpaceGrotesk-Regular.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   src: url(../fonts/SpaceGrotesk-Medium.woff2) format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
-
 :root {
   --color-dark: #191A23;
   --color-dark-alt: #292A32;
@@ -243,7 +227,7 @@ svg * {
   --border-radius-small: 7px;
   --border-radius-large: 45px;
   --shadow: 0 5px 0 0 var(--color-dark);
-  --font-family-base: 'Space Grotesk', sans-serif;
+  --font-family-base: "Space Grotesk", sans-serif;
   --container-width: 1240px;
   --container-padding-x: 20px;
   --section-padding-y: 70px;
@@ -251,4 +235,57 @@ svg * {
   --button-height: 68px;
   --transition-duration: 0.2s;
 }
-/*# sourceMappingURL=styles.css.map */
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.28;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+a,
+button,
+input,
+text,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}/*# sourceMappingURL=styles.css.map */
