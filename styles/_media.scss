@@ -49,7 +49,7 @@ $mobile: 767px;
         &:hover {
             @content;
         }
-    }
+    } 
 
     @media (hover: none) {
         &:active {
