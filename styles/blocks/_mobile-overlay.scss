@@ -3,6 +3,7 @@
     height: 100%;
     margin: 0;
     border: none;
+    padding: 16px 20px;
 
 
     &:modal {
@@ -19,6 +20,7 @@
         @include flex-center;
 
         flex-direction: column;
+        font-size: 30px;
         row-gap: 30px;
         padding-block: 20% 50px;
     }
@@ -30,5 +32,6 @@
 
     &__button {
         align-self: center;
+        font-size: 25px;
     }
 }
